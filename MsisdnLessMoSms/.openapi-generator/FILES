@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_msisdn_less_mosms_notification.go
+go/model_invalid_param.go
+go/model_msisdn_less_mo_sms_notification.go
+go/model_msisdn_less_mo_sms_notification_reply.go
+go/model_problem_details.go
+go/routers.go
+main.go

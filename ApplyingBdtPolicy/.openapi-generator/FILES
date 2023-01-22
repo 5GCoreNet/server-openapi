@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_applied_bdt_policy_subscription.go
+go/api_individual_applied_bdt_policy_subscription.go
+go/model_applied_bdt_policy.go
+go/model_applied_bdt_policy_patch.go
+go/model_invalid_param.go
+go/model_problem_details.go
+go/routers.go
+main.go

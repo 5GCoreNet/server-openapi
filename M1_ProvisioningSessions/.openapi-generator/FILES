@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_default.go
+go/model_provisioning_session.go
+go/model_provisioning_session_type.go
+go/model_provisioning_session_type_any_of.go
+go/routers.go
+main.go

@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_individual_lpi_parameters_provisioning.go
+go/api_lpi_parameters_provisionings.go
+go/model_invalid_param.go
+go/model_location_privacy_ind.go
+go/model_location_privacy_ind_any_of.go
+go/model_lpi.go
+go/model_lpi_parameters_provision.go
+go/model_lpi_parameters_provision_patch.go
+go/model_problem_details.go
+go/model_valid_time_period.go
+go/routers.go
+main.go

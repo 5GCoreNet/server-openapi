@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_default.go
+go/model_akma_af_key_data.go
+go/model_akma_af_key_request.go
+go/model_invalid_param.go
+go/model_problem_details.go
+go/routers.go
+main.go

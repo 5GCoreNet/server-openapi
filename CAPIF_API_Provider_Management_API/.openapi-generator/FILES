@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_default.go
+go/api_individual_api_provider_enrolment_details.go
+go/model_api_provider_enrolment_details.go
+go/model_api_provider_enrolment_details_patch.go
+go/model_api_provider_func_role.go
+go/model_api_provider_func_role_any_of.go
+go/model_api_provider_function_details.go
+go/model_invalid_param.go
+go/model_problem_details.go
+go/model_registration_information.go
+go/routers.go
+main.go

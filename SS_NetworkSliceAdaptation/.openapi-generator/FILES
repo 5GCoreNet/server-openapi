@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_network_slice_adaptation_request.go
+go/model_invalid_param.go
+go/model_nw_slice_adpt_info.go
+go/model_problem_details.go
+go/model_snssai.go
+go/routers.go
+main.go

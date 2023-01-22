@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/api_default.go
+go/model_cause.go
+go/model_cause_any_of.go
+go/model_check_authentication_req.go
+go/model_check_authentication_rsp.go
+go/model_invalid_param.go
+go/model_problem_details.go
+go/model_revoke_authorization_req.go
+go/model_revoke_authorization_rsp.go
+go/model_security_notification.go
+go/routers.go
+main.go

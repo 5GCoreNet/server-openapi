@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/model_base_record.go
+go/model_cache_status.go
+go/model_cache_status_any_of.go
+go/model_endpoint_address.go
+go/model_ipv6_addr.go
+go/model_media_streaming_access_record.go
+go/model_media_streaming_access_record_all_of.go
+go/model_media_streaming_access_record_all_of_connection_metrics.go
+go/model_media_streaming_access_record_all_of_request_message.go
+go/model_media_streaming_access_record_all_of_response_message.go
+go/routers.go
+main.go

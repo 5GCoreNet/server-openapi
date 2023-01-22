@@ -1,0 +1,15 @@
+.openapi-generator-ignore
+Dockerfile
+api/openapi.yaml
+go/README.md
+go/model_alarm_notification_types.go
+go/model_cm_notification_types.go
+go/model_file_notification_types.go
+go/model_heartbeat_notification_types.go
+go/model_notification_header.go
+go/model_notification_type.go
+go/model_notify_heartbeat.go
+go/model_notify_heartbeat_all_of.go
+go/model_perf_notification_types.go
+go/routers.go
+main.go
