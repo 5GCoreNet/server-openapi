@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/MSGS_ASRegistration
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o MSGS_ASRegistration .
+RUN go build -a -installsuffix cgo -o openapi_MSGS_ASRegistration .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/MSGS_ASRegistration ./
+COPY --from=build /go/src/openapi_MSGS_ASRegistration ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./MSGS_ASRegistration"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/MSGS_ASRegistration_MSGS_ASRegistration"]

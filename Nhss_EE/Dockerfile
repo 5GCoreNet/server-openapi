@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nhss_EE
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nhss_EE .
+RUN go build -a -installsuffix cgo -o openapi_Nhss_EE .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nhss_EE ./
+COPY --from=build /go/src/openapi_Nhss_EE ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nhss_EE"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nhss_EE_Nhss_EE"]

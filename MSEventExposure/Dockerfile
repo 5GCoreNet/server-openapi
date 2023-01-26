@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/MSEventExposure
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o MSEventExposure .
+RUN go build -a -installsuffix cgo -o openapi_MSEventExposure .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/MSEventExposure ./
+COPY --from=build /go/src/openapi_MSEventExposure ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./MSEventExposure"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/MSEventExposure_MSEventExposure"]

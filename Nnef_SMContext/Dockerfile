@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nnef_SMContext
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nnef_SMContext .
+RUN go build -a -installsuffix cgo -o openapi_Nnef_SMContext .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nnef_SMContext ./
+COPY --from=build /go/src/openapi_Nnef_SMContext ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nnef_SMContext"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nnef_SMContext_Nnef_SMContext"]

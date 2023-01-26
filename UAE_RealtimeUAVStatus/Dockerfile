@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/UAE_RealtimeUAVStatus
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o UAE_RealtimeUAVStatus .
+RUN go build -a -installsuffix cgo -o openapi_UAE_RealtimeUAVStatus .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/UAE_RealtimeUAVStatus ./
+COPY --from=build /go/src/openapi_UAE_RealtimeUAVStatus ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./UAE_RealtimeUAVStatus"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/UAE_RealtimeUAVStatus_UAE_RealtimeUAVStatus"]

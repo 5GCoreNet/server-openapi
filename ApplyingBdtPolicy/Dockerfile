@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/ApplyingBdtPolicy
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o ApplyingBdtPolicy .
+RUN go build -a -installsuffix cgo -o openapi_ApplyingBdtPolicy .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/ApplyingBdtPolicy ./
+COPY --from=build /go/src/openapi_ApplyingBdtPolicy ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./ApplyingBdtPolicy"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/ApplyingBdtPolicy_ApplyingBdtPolicy"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nmbstf_DistSession
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nmbstf_DistSession .
+RUN go build -a -installsuffix cgo -o openapi_Nmbstf_DistSession .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nmbstf_DistSession ./
+COPY --from=build /go/src/openapi_Nmbstf_DistSession ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nmbstf_DistSession"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nmbstf_DistSession_Nmbstf_DistSession"]

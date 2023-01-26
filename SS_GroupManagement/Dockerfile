@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/SS_GroupManagement
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o SS_GroupManagement .
+RUN go build -a -installsuffix cgo -o openapi_SS_GroupManagement .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/SS_GroupManagement ./
+COPY --from=build /go/src/openapi_SS_GroupManagement ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./SS_GroupManagement"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/SS_GroupManagement_SS_GroupManagement"]

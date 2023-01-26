@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/MBSUserDataIngestSession
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o MBSUserDataIngestSession .
+RUN go build -a -installsuffix cgo -o openapi_MBSUserDataIngestSession .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/MBSUserDataIngestSession ./
+COPY --from=build /go/src/openapi_MBSUserDataIngestSession ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./MBSUserDataIngestSession"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/MBSUserDataIngestSession_MBSUserDataIngestSession"]

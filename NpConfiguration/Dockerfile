@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/NpConfiguration
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o NpConfiguration .
+RUN go build -a -installsuffix cgo -o openapi_NpConfiguration .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/NpConfiguration ./
+COPY --from=build /go/src/openapi_NpConfiguration ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./NpConfiguration"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/NpConfiguration_NpConfiguration"]

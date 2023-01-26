@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nsmf_PDUSession
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nsmf_PDUSession .
+RUN go build -a -installsuffix cgo -o openapi_Nsmf_PDUSession .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nsmf_PDUSession ./
+COPY --from=build /go/src/openapi_Nsmf_PDUSession ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nsmf_PDUSession"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nsmf_PDUSession_Nsmf_PDUSession"]

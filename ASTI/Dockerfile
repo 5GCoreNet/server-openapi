@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/ASTI
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o ASTI .
+RUN go build -a -installsuffix cgo -o openapi_ASTI .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/ASTI ./
+COPY --from=build /go/src/openapi_ASTI ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./ASTI"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/ASTI_ASTI"]

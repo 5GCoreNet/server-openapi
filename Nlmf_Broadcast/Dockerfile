@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nlmf_Broadcast
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nlmf_Broadcast .
+RUN go build -a -installsuffix cgo -o openapi_Nlmf_Broadcast .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nlmf_Broadcast ./
+COPY --from=build /go/src/openapi_Nlmf_Broadcast ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nlmf_Broadcast"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nlmf_Broadcast_Nlmf_Broadcast"]

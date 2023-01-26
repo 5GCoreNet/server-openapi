@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nnrf_NFManagement
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nnrf_NFManagement .
+RUN go build -a -installsuffix cgo -o openapi_Nnrf_NFManagement .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nnrf_NFManagement ./
+COPY --from=build /go/src/openapi_Nnrf_NFManagement ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nnrf_NFManagement"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nnrf_NFManagement_Nnrf_NFManagement"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/M1_PolicyTemplatesProvisioning
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o M1_PolicyTemplatesProvisioning .
+RUN go build -a -installsuffix cgo -o openapi_M1_PolicyTemplatesProvisioning .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/M1_PolicyTemplatesProvisioning ./
+COPY --from=build /go/src/openapi_M1_PolicyTemplatesProvisioning ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./M1_PolicyTemplatesProvisioning"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/M1_PolicyTemplatesProvisioning_M1_PolicyTemplatesProvisioning"]

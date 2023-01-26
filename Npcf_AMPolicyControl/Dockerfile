@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Npcf_AMPolicyControl
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Npcf_AMPolicyControl .
+RUN go build -a -installsuffix cgo -o openapi_Npcf_AMPolicyControl .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Npcf_AMPolicyControl ./
+COPY --from=build /go/src/openapi_Npcf_AMPolicyControl ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Npcf_AMPolicyControl"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Npcf_AMPolicyControl_Npcf_AMPolicyControl"]

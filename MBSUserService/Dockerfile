@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/MBSUserService
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o MBSUserService .
+RUN go build -a -installsuffix cgo -o openapi_MBSUserService .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/MBSUserService ./
+COPY --from=build /go/src/openapi_MBSUserService ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./MBSUserService"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/MBSUserService_MBSUserService"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nhss_imsUEAU
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nhss_imsUEAU .
+RUN go build -a -installsuffix cgo -o openapi_Nhss_imsUEAU .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nhss_imsUEAU ./
+COPY --from=build /go/src/openapi_Nhss_imsUEAU ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nhss_imsUEAU"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nhss_imsUEAU_Nhss_imsUEAU"]

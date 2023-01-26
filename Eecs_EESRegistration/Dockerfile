@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Eecs_EESRegistration
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Eecs_EESRegistration .
+RUN go build -a -installsuffix cgo -o openapi_Eecs_EESRegistration .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Eecs_EESRegistration ./
+COPY --from=build /go/src/openapi_Eecs_EESRegistration ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Eecs_EESRegistration"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Eecs_EESRegistration_Eecs_EESRegistration"]

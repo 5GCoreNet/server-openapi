@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/AMPolicyAuthorization
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o AMPolicyAuthorization .
+RUN go build -a -installsuffix cgo -o openapi_AMPolicyAuthorization .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/AMPolicyAuthorization ./
+COPY --from=build /go/src/openapi_AMPolicyAuthorization ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./AMPolicyAuthorization"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/AMPolicyAuthorization_AMPolicyAuthorization"]

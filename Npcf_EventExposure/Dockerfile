@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Npcf_EventExposure
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Npcf_EventExposure .
+RUN go build -a -installsuffix cgo -o openapi_Npcf_EventExposure .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Npcf_EventExposure ./
+COPY --from=build /go/src/openapi_Npcf_EventExposure ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Npcf_EventExposure"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Npcf_EventExposure_Npcf_EventExposure"]

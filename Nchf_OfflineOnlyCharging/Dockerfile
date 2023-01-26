@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nchf_OfflineOnlyCharging
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nchf_OfflineOnlyCharging .
+RUN go build -a -installsuffix cgo -o openapi_Nchf_OfflineOnlyCharging .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nchf_OfflineOnlyCharging ./
+COPY --from=build /go/src/openapi_Nchf_OfflineOnlyCharging ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nchf_OfflineOnlyCharging"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nchf_OfflineOnlyCharging_Nchf_OfflineOnlyCharging"]

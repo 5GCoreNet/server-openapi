@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/ResourceManagementOfBdt
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o ResourceManagementOfBdt .
+RUN go build -a -installsuffix cgo -o openapi_ResourceManagementOfBdt .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/ResourceManagementOfBdt ./
+COPY --from=build /go/src/openapi_ResourceManagementOfBdt ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./ResourceManagementOfBdt"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/ResourceManagementOfBdt_ResourceManagementOfBdt"]

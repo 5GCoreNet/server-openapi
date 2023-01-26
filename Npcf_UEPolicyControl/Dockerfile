@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Npcf_UEPolicyControl
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Npcf_UEPolicyControl .
+RUN go build -a -installsuffix cgo -o openapi_Npcf_UEPolicyControl .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Npcf_UEPolicyControl ./
+COPY --from=build /go/src/openapi_Npcf_UEPolicyControl ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Npcf_UEPolicyControl"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Npcf_UEPolicyControl_Npcf_UEPolicyControl"]

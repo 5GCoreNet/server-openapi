@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Eees_AppContextRelocation
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Eees_AppContextRelocation .
+RUN go build -a -installsuffix cgo -o openapi_Eees_AppContextRelocation .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Eees_AppContextRelocation ./
+COPY --from=build /go/src/openapi_Eees_AppContextRelocation ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Eees_AppContextRelocation"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Eees_AppContextRelocation_Eees_AppContextRelocation"]

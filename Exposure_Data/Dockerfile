@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Exposure_Data
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Exposure_Data .
+RUN go build -a -installsuffix cgo -o openapi_Exposure_Data .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Exposure_Data ./
+COPY --from=build /go/src/openapi_Exposure_Data ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Exposure_Data"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Exposure_Data_Exposure_Data"]

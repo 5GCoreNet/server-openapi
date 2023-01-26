@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nucmf_UERCM
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nucmf_UERCM .
+RUN go build -a -installsuffix cgo -o openapi_Nucmf_UERCM .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nucmf_UERCM ./
+COPY --from=build /go/src/openapi_Nucmf_UERCM ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nucmf_UERCM"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nucmf_UERCM_Nucmf_UERCM"]

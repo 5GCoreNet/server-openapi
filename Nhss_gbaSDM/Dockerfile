@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nhss_gbaSDM
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nhss_gbaSDM .
+RUN go build -a -installsuffix cgo -o openapi_Nhss_gbaSDM .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nhss_gbaSDM ./
+COPY --from=build /go/src/openapi_Nhss_gbaSDM ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nhss_gbaSDM"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nhss_gbaSDM_Nhss_gbaSDM"]

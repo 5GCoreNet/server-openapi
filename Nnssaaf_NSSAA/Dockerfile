@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nnssaaf_NSSAA
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nnssaaf_NSSAA .
+RUN go build -a -installsuffix cgo -o openapi_Nnssaaf_NSSAA .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nnssaaf_NSSAA ./
+COPY --from=build /go/src/openapi_Nnssaaf_NSSAA ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nnssaaf_NSSAA"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nnssaaf_NSSAA_Nnssaaf_NSSAA"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Eees_ACRManagementEvent
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Eees_ACRManagementEvent .
+RUN go build -a -installsuffix cgo -o openapi_Eees_ACRManagementEvent .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Eees_ACRManagementEvent ./
+COPY --from=build /go/src/openapi_Eees_ACRManagementEvent ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Eees_ACRManagementEvent"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Eees_ACRManagementEvent_Eees_ACRManagementEvent"]

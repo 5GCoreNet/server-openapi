@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/LpiParameterProvision
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o LpiParameterProvision .
+RUN go build -a -installsuffix cgo -o openapi_LpiParameterProvision .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/LpiParameterProvision ./
+COPY --from=build /go/src/openapi_LpiParameterProvision ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./LpiParameterProvision"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/LpiParameterProvision_LpiParameterProvision"]

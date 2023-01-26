@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/ComDefs
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o ComDefs .
+RUN go build -a -installsuffix cgo -o openapi_ComDefs .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/ComDefs ./
+COPY --from=build /go/src/openapi_ComDefs ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./ComDefs"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/ComDefs_ComDefs"]

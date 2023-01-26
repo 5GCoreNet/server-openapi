@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/M1_EdgeResourcesProvisioning
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o M1_EdgeResourcesProvisioning .
+RUN go build -a -installsuffix cgo -o openapi_M1_EdgeResourcesProvisioning .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/M1_EdgeResourcesProvisioning ./
+COPY --from=build /go/src/openapi_M1_EdgeResourcesProvisioning ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./M1_EdgeResourcesProvisioning"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/M1_EdgeResourcesProvisioning_M1_EdgeResourcesProvisioning"]

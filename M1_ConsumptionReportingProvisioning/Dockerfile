@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/M1_ConsumptionReportingProvisioning
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o M1_ConsumptionReportingProvisioning .
+RUN go build -a -installsuffix cgo -o openapi_M1_ConsumptionReportingProvisioning .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/M1_ConsumptionReportingProvisioning ./
+COPY --from=build /go/src/openapi_M1_ConsumptionReportingProvisioning ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./M1_ConsumptionReportingProvisioning"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/M1_ConsumptionReportingProvisioning_M1_ConsumptionReportingProvisioning"]

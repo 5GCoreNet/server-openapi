@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Eees_UELocation
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Eees_UELocation .
+RUN go build -a -installsuffix cgo -o openapi_Eees_UELocation .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Eees_UELocation ./
+COPY --from=build /go/src/openapi_Eees_UELocation ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Eees_UELocation"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Eees_UELocation_Eees_UELocation"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nudm_SSAU
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nudm_SSAU .
+RUN go build -a -installsuffix cgo -o openapi_Nudm_SSAU .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nudm_SSAU ./
+COPY --from=build /go/src/openapi_Nudm_SSAU ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nudm_SSAU"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nudm_SSAU_Nudm_SSAU"]

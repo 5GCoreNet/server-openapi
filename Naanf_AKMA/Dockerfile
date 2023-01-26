@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Naanf_AKMA
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Naanf_AKMA .
+RUN go build -a -installsuffix cgo -o openapi_Naanf_AKMA .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Naanf_AKMA ./
+COPY --from=build /go/src/openapi_Naanf_AKMA ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Naanf_AKMA"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Naanf_AKMA_Naanf_AKMA"]

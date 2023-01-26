@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nadrf_DataManagement
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nadrf_DataManagement .
+RUN go build -a -installsuffix cgo -o openapi_Nadrf_DataManagement .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nadrf_DataManagement ./
+COPY --from=build /go/src/openapi_Nadrf_DataManagement ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nadrf_DataManagement"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nadrf_DataManagement_Nadrf_DataManagement"]

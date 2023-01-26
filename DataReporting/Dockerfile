@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/DataReporting
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o DataReporting .
+RUN go build -a -installsuffix cgo -o openapi_DataReporting .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/DataReporting ./
+COPY --from=build /go/src/openapi_DataReporting ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./DataReporting"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/DataReporting_DataReporting"]

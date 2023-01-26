@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nspaf_SecuredPacket
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nspaf_SecuredPacket .
+RUN go build -a -installsuffix cgo -o openapi_Nspaf_SecuredPacket .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nspaf_SecuredPacket ./
+COPY --from=build /go/src/openapi_Nspaf_SecuredPacket ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nspaf_SecuredPacket"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nspaf_SecuredPacket_Nspaf_SecuredPacket"]

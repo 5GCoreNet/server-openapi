@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nudm_RSDS
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nudm_RSDS .
+RUN go build -a -installsuffix cgo -o openapi_Nudm_RSDS .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nudm_RSDS ./
+COPY --from=build /go/src/openapi_Nudm_RSDS ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nudm_RSDS"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nudm_RSDS_Nudm_RSDS"]

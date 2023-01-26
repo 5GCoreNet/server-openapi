@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nmnpf_NPStatus
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nmnpf_NPStatus .
+RUN go build -a -installsuffix cgo -o openapi_Nmnpf_NPStatus .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nmnpf_NPStatus ./
+COPY --from=build /go/src/openapi_Nmnpf_NPStatus ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nmnpf_NPStatus"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nmnpf_NPStatus_Nmnpf_NPStatus"]

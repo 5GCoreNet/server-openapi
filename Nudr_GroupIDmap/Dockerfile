@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Nudr_GroupIDmap
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Nudr_GroupIDmap .
+RUN go build -a -installsuffix cgo -o openapi_Nudr_GroupIDmap .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Nudr_GroupIDmap ./
+COPY --from=build /go/src/openapi_Nudr_GroupIDmap ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Nudr_GroupIDmap"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Nudr_GroupIDmap_Nudr_GroupIDmap"]

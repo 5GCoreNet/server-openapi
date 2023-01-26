@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Eees_EASDiscovery
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Eees_EASDiscovery .
+RUN go build -a -installsuffix cgo -o openapi_Eees_EASDiscovery .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Eees_EASDiscovery ./
+COPY --from=build /go/src/openapi_Eees_EASDiscovery ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Eees_EASDiscovery"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Eees_EASDiscovery_Eees_EASDiscovery"]

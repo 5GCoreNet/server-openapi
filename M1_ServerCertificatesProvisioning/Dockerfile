@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/M1_ServerCertificatesProvisioning
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o M1_ServerCertificatesProvisioning .
+RUN go build -a -installsuffix cgo -o openapi_M1_ServerCertificatesProvisioning .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/M1_ServerCertificatesProvisioning ./
+COPY --from=build /go/src/openapi_M1_ServerCertificatesProvisioning ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./M1_ServerCertificatesProvisioning"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/M1_ServerCertificatesProvisioning_M1_ServerCertificatesProvisioning"]

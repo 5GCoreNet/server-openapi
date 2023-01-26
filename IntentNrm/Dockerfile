@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/IntentNrm
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o IntentNrm .
+RUN go build -a -installsuffix cgo -o openapi_IntentNrm .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/IntentNrm ./
+COPY --from=build /go/src/openapi_IntentNrm ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./IntentNrm"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/IntentNrm_IntentNrm"]

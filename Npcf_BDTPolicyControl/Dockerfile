@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/Npcf_BDTPolicyControl
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o Npcf_BDTPolicyControl .
+RUN go build -a -installsuffix cgo -o openapi_Npcf_BDTPolicyControl .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/Npcf_BDTPolicyControl ./
+COPY --from=build /go/src/openapi_Npcf_BDTPolicyControl ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./Npcf_BDTPolicyControl"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/Npcf_BDTPolicyControl_Npcf_BDTPolicyControl"]

@@ -1,15 +1,15 @@
 FROM golang:1.10 AS build
 WORKDIR /go/src
-COPY go ./go
+COPY go github.com/5GCoreNet/server-openapi/N5g-ddnmf_Discovery
 COPY main.go .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
 
-RUN go build -a -installsuffix cgo -o N5g-ddnmf_Discovery .
+RUN go build -a -installsuffix cgo -o openapi_N5g-ddnmf_Discovery .
 
 FROM scratch AS runtime
 ENV GIN_MODE=release
-COPY --from=build /go/src/N5g-ddnmf_Discovery ./
+COPY --from=build /go/src/openapi_N5g-ddnmf_Discovery ./
 EXPOSE 8080/tcp
-ENTRYPOINT ["./N5g-ddnmf_Discovery"]
+ENTRYPOINT ["github.com/5GCoreNet/server-openapi/N5g-ddnmf_Discovery_N5g-ddnmf_Discovery"]
